@@ -21,7 +21,8 @@ app.set('view engine','ejs');
 app.use('/',indexRouter);
 app.use('/banner',bannerRouter);
 app.use('/films',filmsRouter);  
-app.use('/cinema',cinemaRouter);  
+app.use('/cinema',cinemaRouter); 
+ 
 
 
 
