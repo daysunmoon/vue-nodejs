@@ -7,8 +7,9 @@ const indexRouter = require('./routes/index');
 const bannerRouter = require('./routes/banner');
 const filmsRouter = require('./routes/films');
 const cinemaRouter = require('./routes/cinema');
+const userRouter = require('./routes/user');
 
-
+ 
 
 app.use(express.static(path.resolve(__dirname,'./public')));
 app.use(cookieParser());
@@ -22,6 +23,8 @@ app.use('/',indexRouter);
 app.use('/banner',bannerRouter);
 app.use('/films',filmsRouter);  
 app.use('/cinema',cinemaRouter); 
+app.use('/user',userRouter); 
+
  
 
 

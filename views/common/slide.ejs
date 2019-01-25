@@ -1,8 +1,11 @@
 <div class="layout-slide">
     <ul>
-      <li>
-        <a href="/users.html">用户管理</a>
-      </li>
+      <% if (isAdmin){ %>
+        <li>
+            <a href="/users.html">用户管理</a>
+          </li>
+        <% } %>
+      
       <li>
         <a href="/banner.html">banner图管理</a>
       </li>

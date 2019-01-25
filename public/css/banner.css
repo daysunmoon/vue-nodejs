@@ -44,3 +44,10 @@
 .banner-nav .pagination .active a{
     background: #337ab7;
 }
+
+.update{
+    background: #cccccc;
+    font-size: 12px;
+    border: none;
+    color: #333;
+}

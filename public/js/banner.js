@@ -15,7 +15,12 @@
             urlInput: $('#inputPassword3'),
             pagination: $('.pagination'),    // 分页的ul
             addModal: $('#addModal'),//新增模态框
-            submitAdd: $('#bannerAdd')//确认添加按钮
+            submitAdd: $('#bannerAdd'),//确认添加按钮
+            updateName: $('#updateName'),
+            updateImg: $('#updateImg'),
+            updateModal: $('#updateModal'),
+            submitUpdate: $('#bannerUpdate'),
+
         }
     }
 
@@ -52,6 +57,47 @@
                 // 手动清空输入框的内容
                 _this.dom.nameInput.val('');
                 _this.dom.urlInput.val('');
+            }
+        })
+    }
+
+
+    //修改的方法
+    Banner.prototype.update = function (id) {
+        var _this = this;
+        id = id;
+        // ajax提交，并带有文件
+        // 1、实例化一个formData对象
+        var formData = new FormData();
+        // 2、给formData对象加属性
+        formData.append('id',id)
+        formData.append('bannerName', this.dom.updateName.val());
+        formData.append('bannerImg', this.dom.updateImg[0].files[0]);
+
+        $.ajax({
+            
+            url: '/banner/update',
+            method: 'POST',
+            //！！！！上传文件的时候需要设置这两个属性
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function () {
+                layer.msg('修改成功');
+                setTimeout(function(){
+                    _this.search();
+                },1000)
+            },
+            error: function (err) {
+                console.log(err.message);
+                layer.msg('网络异常，请稍后重试');
+            },
+            complete: function () {
+                // 手动调用关闭的方法
+                _this.dom.updateModal.modal('hide')
+                // 手动清空输入框的内容
+                _this.dom.updateName.val('');
+                _this.dom.updateImg.val('');
             }
         })
     }
@@ -137,8 +183,7 @@
                     </td>
                     <td>
                     <a href="javascript:;" class="delete" data-id="${this.bannerList[i]._id}">删除</a>&nbsp;&nbsp;&nbsp;
-                    <a href="javascript:;" class="update"
-                    data-id="${this.bannerList[i]._id}">修改</a>
+                    <button type="button" class="btn btn-primary btn-lg update" data-toggle="modal" data-target="#updateModal" data-id="${this.bannerList[i]._id}" >修改</button>
                     </td>
                 </tr>  
                 `
@@ -222,8 +267,10 @@
 
             // 2.二次确认框
             layer.confirm('确认删除吗？', function () {
+                setTimeout(function(){
+                    _this.search();
+                },1000)
                 console.log('确认');
-                _this.search();
                 $.post('/banner/delete', {
                     id: id
                 }, function (res) {
@@ -237,6 +284,39 @@
             }, function () {
                 console.log('取消');
             })
+        })
+
+        //修改按钮
+        this.dom.table.on('click', '.update', function () {
+            // 1.得到id
+            var id = $(this).data('id');
+            // _this.dom.updateName.val() =  _this.dom.nameInput.val();
+            // _this.dom.updateImg.val() =  _this.dom.urlInput.val();
+           
+            _this.dom.submitUpdate.click(function () {
+                _this.update(id);
+
+                // $.post('/banner/update', {
+                //     id: id,
+                //     bannerName: _this.dom.updateName.val(),
+                //     bannerImg: _this.dom.updateImg.val()
+                //     // bannerName:
+                // }, function (res) {
+                //     if (res.code === 0) {
+                //         layer.msg('修改成功');
+                //         // _this.search();
+                //     } else {
+                //         layer.msg('网络异常，请稍后重试');
+                //     }
+                //     //   手动调用关闭的方法
+                //     _this.dom.updateModal.modal('hide')
+                //     // 手动清空输入框的内容
+                //     _this.dom.updateName.val('');
+                //     _this.dom.updateImg.val('');
+                // })
+
+            })
+
         })
 
     }
