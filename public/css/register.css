@@ -1,22 +1,16 @@
 body{
     background: #545454;
 }
-#login{
-    height: 490px;
+#register{
+    height: 540px;
     width: 424px;
     /* border: 12px solid #5b5b5b; */
     margin: 60px auto;
     border-radius: 14px;
     background: #fffffd;
 }
-/* .login{
-    height: 474px;
-    width: 420px;
-    border: 2px solid #fffffd;
-    border-radius:12px;
-} */
 .header{
-    height: 74px;
+    height: 64px;
     width: 422px;
     background: #f7f7f7;
     border-bottom: 3px solid #d2d2d2;
@@ -27,26 +21,25 @@ body{
     font-size:28px;
     /* margin-left: 30px; */
     text-align: center;
-    height: 74px;
-    line-height: 74px;
+    height: 64px;
+    line-height: 64px;
     font-weight:bolder; 
 }
-
 .main input{
     width: 406px;
-    height: 60px;
-    border: 2px solid #d7d7d7;
-    margin-top: 46px;
     margin-left: 8px;
-    font-size: 20px;
+    height: 54px;
+    border: 2px solid #d7d7d7;
+    margin-top: 30px;
+    font-size: 18px;
     padding-left: 24px;
     line-height: 56px;
     border-radius: 8px;
 }
 #btn{
     width: 130px;
-    height: 56px;
-    margin-top: 54px;
+    height: 50px;
+    margin-top: 26px;
     background: #97e4ea;
     border: 4px solid #8aced1;
     color: #76babd;
@@ -58,7 +51,7 @@ body{
   font-size: 16px;
   /* color: #f8f8f8; */
   margin-left:134px;
-  margin-top: 30px; 
+  margin-top: 12px; 
 }
 .none a{
     color: #a80b0b;
