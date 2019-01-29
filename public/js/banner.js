@@ -273,7 +273,7 @@
             if (_this.pageNum === num || num < 1 || num > _this.totalPage) {
                 return;
             }
-            // 2、设置给this.pageNim
+            // 2、设置给this.pageNum
             _this.pageNum = num;
             // 3、再次调用一下this.search
             _this.search();
