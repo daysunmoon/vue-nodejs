@@ -3,7 +3,7 @@ const router = express.Router();
 const FilmsModel = require('../models/films');
 const async = require('async');
 
-// 添加banenr  - http://localhost:3000/films/add
+// 添加films  - http://localhost:3000/films/add
 router.post('/add',function(req,res){
     var films = new FilmsModel({
         name:req.body.filmsName,
@@ -29,7 +29,7 @@ router.post('/add',function(req,res){
     })
 
 
-    // 搜索or查询banner - http://localhost:3000/films/search
+    // 搜索or查询films - http://localhost:3000/films/search
 router.get('/search',function(req,res){
     // 分页
    // 1. 得到前端传递过来的参数

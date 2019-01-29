@@ -4,7 +4,7 @@
     var Banner = function () {
         //  定义这个页面需要的一些数据
         this.pageNum = 1;
-        this.pageSize = 2;
+        this.pageSize = 3;
         this.totalPage = 0;
         this.bannerList = [];//banner数据
 
@@ -45,7 +45,9 @@
             data: formData,
             success: function () {
                 layer.msg('添加成功');
+                setTimeout(function(){
                 _this.search();
+                },1000)
             },
             error: function (err) {
                 console.log(err.message);
@@ -61,6 +63,23 @@
         })
     }
 
+
+    //修改时携带原有数据
+    Banner.prototype.getData = function (id) {
+        var _this = this;
+        id = id;
+        console.log(id)
+        $.post('/banner/update1',{
+            id:id
+        },function(res){
+            console.log( res.dataName)
+            console.log( res.dataImg)
+            _this.dom.updateName.val(res.dataName) 
+            // _this.dom.updateImg.val(res.dataImg)  
+           
+        })
+    }
+  
 
     //修改的方法
     Banner.prototype.update = function (id) {
@@ -290,6 +309,8 @@
         this.dom.table.on('click', '.update', function () {
             // 1.得到id
             var id = $(this).data('id');
+
+            _this.getData(id);
             // _this.dom.updateName.val() =  _this.dom.nameInput.val();
             // _this.dom.updateImg.val() =  _this.dom.urlInput.val();
            

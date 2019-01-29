@@ -209,6 +209,28 @@ router.post('/update', upload.single('bannerImg'), (req, res) => {
     }
 })
 
+// 修改banner 点击修改时携带数据（查询对应的id） http://localhost:3000/banner/update1
+router.post('/update1',(req,res)=>{
+    let id = req.body.id;
+
+    BannerModel.findOne({
+        _id:id
+    }).then(data=>{
+        console.log(data)
+        res.json({
+            code: 0,
+            msg: 'ok',
+            dataName:data.name,
+            dataImg:data.imgUrl
+        })
+    }).catch(err=>{
+        res.json({
+            code: -1,
+            msg: err.message
+        })
+    })
+})
+
 module.exports = router;
 
 
