@@ -114,8 +114,23 @@
     }
 
 
-    //修改时携带原有数据
-    Films.prototype.getData = function (id) {
+    //删除的方法
+   Films.prototype.delete = function (id) {
+        var id = id;
+        $.post('/films/delete', {
+            id: id
+        }, function (res) {
+            if (res.code === 0) {
+                layer.msg('删除成功');
+
+            } else {
+                layer.msg('网络异常，请稍后重试');
+            }
+        })
+    }
+
+     //修改时携带原有数据
+     Films.prototype.getData = function (id) {
         var _this = this;
         id = id;
         console.log(id)
@@ -132,6 +147,7 @@
             _this.dom.updateTime.val(res.dataTime) ;
         })
     }
+
 
     //修改的方法   
     Films.prototype.update = function (id) {
@@ -278,31 +294,22 @@
         })
 
 
-         // 删除按钮
-         this.dom.table.on('click', '.delete', function () {
-            // 1.得到id
-            var id = $(this).data('id');
+        // 删除按钮
+       this.dom.table.on('click','.delete',function () {
+        // 1.得到id
+        var id = $(this).data('id');
 
-            // 2.二次确认框
-            layer.confirm('确认删除吗？', function () {
-                setTimeout(function(){
-                    _this.search();
-                },1000)
-                console.log('确认');
-                $.post('/films/delete', {
-                    id: id
-                }, function (res) {
-                    if (res.code === 0) {
-                        layer.msg('删除成功');
-
-                    } else {
-                        layer.msg('网络异常，请稍后重试');
-                    }
-                })
-            }, function () {
-                console.log('取消');
-            })
+        layer.confirm("确认删除吗？",function () {
+             console.log('确认');
+             _this.delete(id);
+             setTimeout(function(){
+                 _this.search();
+             },1000)
+         
+        },function () {
+         console.log('取消');
         })
+    })
 
 
         //修改按钮

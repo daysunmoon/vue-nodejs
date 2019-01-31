@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,10 @@
     <link rel="stylesheet" href="/other/layui/css/layui.css">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/banner.css"> 
-   
+    <link rel="stylesheet" href="/css/banner.css">
+
 </head>
+
 <body>
     <%- include('./common/slide.ejs'); %>
 
@@ -22,34 +24,34 @@
                 <thead>
                     <tr>
                         <th>序号</th>
-                        <th>影院名称</th>
-                        <th>地址</th>
-                        <th>&nbsp;&nbsp;价格&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;距离&nbsp;&nbsp;</th>
-                        <th>&nbsp;&nbsp;操作&nbsp;&nbsp;</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>昵称</th>
+                        <th>是否为管理员</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr> 
-                        <td>5c46b47c94d8a21c5c6bbaae</td>
-                        <td>英皇电影城（东海缤纷店）</td>
-                        <td>东海国际中心二期B区101之B1002号商铺</td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;￥42元起&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;距离未知&nbsp;&nbsp;&nbsp;&nbsp; </td>
+                    <!-- <tr>
+                        <td>5c505d8ca54c8a0ab856b9f1</td>
+                        <td>&nbsp;&nbsp;&nbsp;久久&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp; 99&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;九九&nbsp;&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;否&nbsp;&nbsp;&nbsp;</td>
                         <td>
-                            <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;删除</a>&nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;">&nbsp;&nbsp;&nbsp;&nbsp;修改</a>
+                            <a href="javascript:;">删除</a>
+                            <a href="javascript:;">修改</a>
                         </td>
                     </tr> -->
                 </tbody>
-               
+
             </table>
             <div class="bottom">
-                    
-                    
+
+
                 <nav aria-label="Page navigation" class="banner-nav">
                     <ul class="pagination">
-                      <!-- <li>
+                        <!-- <li>
                         <a href="#" aria-label="Previous">
                           <span aria-hidden="true">&laquo;</span>
                         </a>
@@ -65,53 +67,54 @@
                         </a>
                       </li> -->
                     </ul>
-                  </nav>
-                
-                  <button type="button" data-toggle="modal" data-target="#addModal" class="layui-btn banner-button">新增</button>
-                  <!-- Modal -->
+                </nav>
+
+                <button type="button" data-toggle="modal" data-target="#addModal" class="layui-btn banner-button">新增</button>
+                <!-- Modal -->
                 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">新增影院</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">新增用户</h4>
                             </div>
                             <div class="modal-body">
-                                 <form class="form-horizontal">
+                                <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">影院名称</label>
+                                        <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
                                         <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputEmail3">
+                                            <input type="text" class="form-control" id="inputEmail3">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">地址</label>
+                                        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                                         <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputPassword3">
+                                            <input type="password" class="form-control" id="inputPassword3">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">价格</label>
+                                        <label for="inputNickName" class="col-sm-2 control-label">昵称</label>
                                         <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputPrice">
+                                            <input type="text" class="form-control" id="inputNickName">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">距离</label>
+                                        <label for="inputIsAdmin" class="col-sm-2 control-label">管理员？</label>
                                         <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputDistance">
+                                            <input type="text" class="form-control" id="inputIsAdmin">
                                         </div>
                                     </div>
+
                                 </form>
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-primary" id="bannerAdd">确认添加</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" id="bannerAdd">确认添加</button>
                             </div>
                         </div>
-                        </div>
+                    </div>
                 </div>
-
 
                 <!-- 修改Modal -->
                 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -120,32 +123,32 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">修改cinema</h4>
+                                <h4 class="modal-title" id="myModalLabel">修改users</h4>
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="updateName" class="col-sm-2 control-label">影院名称</label>
+                                        <label for="updateName" class="col-sm-2 control-label">用户名</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" id="updateName">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="updateAddress" class="col-sm-2 control-label">地址</label>
+                                        <label for="updatePassword" class="col-sm-2 control-label">密码</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="updateAddress">
+                                            <input type="password" class="form-control" id="updatePassword">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="updatePrice" class="col-sm-2 control-label">价格</label>
+                                        <label for="updateNickName" class="col-sm-2 control-label">昵称</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="updatePrice">
+                                            <input type="text" class="form-control" id="updateNickName">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="updateDistance" class="col-sm-2 control-label">距离</label>
+                                        <label for="updateIsAdmin" class="col-sm-2 control-label">管理员？</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="updateDistance">
+                                            <input type="text" class="form-control" id="updateIsAdmin">
                                         </div>
                                     </div>
                                 </form>
@@ -158,15 +161,16 @@
                     </div>
                 </div>
                 <!-- </div> -->
-                
-                  
+
             </div>
-           
+
         </div>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" ></script>
-    <script src="/js/cinema.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/js/users.js"></script>
     <script src="/other/layui/layui.all.js"></script>
 </body>
+
 </html>

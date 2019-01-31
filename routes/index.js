@@ -38,13 +38,21 @@ router.get('/cinema.html',userCheck,(req,res)=>{
     })
 })
 
+// users 页面
+router.get('/users.html',userCheck,(req,res)=>{
+    res.render('users',{
+        nickName:req.cookies.nickName,
+        isAdmin:Number(req.cookies.isAdmin)
+    });
+})
+
 // 注册 页面
 router.get('/register.html', (req, res) => {
     res.render('register');
-  })
+})
 // 登录 页面
 router.get('/login.html', (req, res) => {
     res.render('login');
-  })
+})
 
 module.exports = router;

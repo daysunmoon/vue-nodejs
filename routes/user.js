@@ -1,6 +1,8 @@
 const express = require('express');
 const UserModel = require('../models/user');
 const router = express.Router();
+const async = require('async');
+
 
 //注册  /user/register
 router.post('/register', (req, res) => {
@@ -134,4 +136,146 @@ router.post('/login', (req, res) => {
     })
 })
 
+
+
+
+// 添加user  - http://localhost:3000/user/add
+router.post('/add', function (req, res) {
+    var user = new UserModel({
+        userName: req.body.userName,
+        password: req.body.userPassword,
+        nickName: req.body.userNickName,
+        isAdmin: req.body.userIsAdmin
+    });
+
+    user
+        .save()
+        .then(() => {
+            res.json({
+                code: 0,
+                msg: 'ok'
+            })
+        })
+        .catch(err => {
+            res.json({
+                code: -1,
+                msg: err.message
+            })
+        })
+})
+
+// 查询user  - http://localhost:3000/user/search
+router.get('/search', (req, res) => {
+    // 分页
+    // 1. 得到前端传递过来的参数
+    let pageNum = Number(req.query.pageNum) || 1;
+    let pageSize = Number(req.query.pageSize) || 2;
+
+    async.parallel([
+        function (cb) {
+            UserModel.find().count().then(num => {
+                cb(null, num)
+            }).catch(err => {
+                cb(err)
+            })
+        }, function (cb) {
+            UserModel.find().skip((pageNum - 1) * pageSize).limit(pageSize).then(data => {
+                cb(null, data)
+            }).catch(err => {
+                cb(err)
+            })
+        }
+    ], function (err, result) {
+        if (err) {
+            res.json({
+                code: -1,
+                msg: err.message
+            })
+        } else {
+            res.json({
+                code: 0,
+                msg: 'ok',
+                data: result[1],
+                totalPage: Math.ceil(result[0] / pageSize)
+            })
+        }
+    })
+})
+
+// 删除user http://localhost:3000/user /delete
+router.post('/delete', (req, res) => {
+    let id = req.body.id;
+
+    UserModel.findOneAndDelete({
+        _id: id
+    }).then(data => {
+        if (data) {
+            res.json({
+                code: 0,
+                msg: 'ok'
+            })
+        } else {
+            res.json({
+                code: -1,
+                msg: '未找到相关记录'
+            })
+        }
+    }).catch(err => {
+        res.json({
+            code: -1,
+            msg: err.message
+        })
+    })
+})
+
+
+// 修改user  http://localhost:3000/user/update
+router.post('/update', (req, res) => {
+    let id = req.body.id;
+
+    UserModel.update({
+        _id: id
+    }, {
+            $set: {
+                userName: req.body.userName,
+                password: req.body.userPassword,
+                nickName: req.body.userNickName,
+                isAdmin: req.body.userIsAdmin
+            }
+        }).then(() => {
+            res.json({
+                code: 0,
+                msg: 'ok'
+            })
+        }).catch(err => {
+            res.json({
+                code: -1,
+                msg: err.message
+            })
+        })
+})
+
+// 修改user 点击修改时携带数据（查询对应的id） http://localhost:3000/user/update1
+router.post('/update1',(req,res)=>{
+    let id = req.body.id;
+
+    UserModel.findOne({
+        _id:id
+    }).then(data=>{
+        console.log(data)
+        res.json({
+            code: 0,
+            msg: 'ok',
+            dataName:data.userName,
+            dataPassword:data.password,
+            dataNickName:data.nickName,
+            dataIsAdmin:data.isAdmin
+        })
+    }).catch(err=>{
+        res.json({
+            code: -1,
+            msg: err.message
+        })
+    })
+})
 module.exports = router;

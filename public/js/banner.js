@@ -63,9 +63,74 @@
         })
     }
 
+    // Banner.prototype.add = function () {
+    //     var _this = this;
+    //     $.post('/banner/add', {
+    //         bannerName: this.dom.nameInput.val(),
+    //         bannerUrl: this.dom.urlInput.val()
+    //     }, function (res) {
+    //         if (res.code == 0) {
+    //             layer.msg('添加成功');
+    //             // 请求一下数据
+    //             _this.search()
+    //         } else {
+    //             // console.log(res.msg);
+    //             layer.msg('网络异常，请稍后重试');
+    //         }
+    //         // 手动调用关闭的方法
+    //         _this.dom.addModal.modal('hide')
+    //         // 手动清空输入框的内容
+    //         _this.dom.nameInput.val('');
+    //         _this.dom.urlInput.val('');
+    //     });
+    // }
 
-    //修改时携带原有数据
-    Banner.prototype.getData = function (id) {
+    // 查询的方法search
+    Banner.prototype.search = function () {
+        var _this = this;
+        $.get('/banner/search', {
+            pageNum: this.pageNum,
+            pageSize: this.pageSize
+        }, function (res) {
+            if (res.code == 0) {
+                layer.msg('查询成功');
+
+                // 将res.data写入到实例的bannerList
+                _this.bannerList = res.data;
+                // 将res.totalPage写入到实例的totalPage
+                _this.totalPage = res.totalPage;
+
+                // 调用渲染table
+                _this.renderTable();
+
+                // 调用渲染分页
+                _this.renderPage();
+
+            } else {
+                console.log(res.msg);
+                layer.msg('网络异常，请稍后重试');
+            }
+        })
+
+    }
+
+    //删除的方法
+    Banner.prototype.delete = function (id) {
+        var id = id;
+        $.post('/banner/delete', {
+            id: id
+        }, function (res) {
+            if (res.code === 0) {
+                layer.msg('删除成功');
+
+            } else {
+                layer.msg('网络异常，请稍后重试');
+            }
+        })
+    }
+
+      //修改时携带原有数据
+      Banner.prototype.getData = function (id) {
         var _this = this;
         id = id;
         console.log(id)
@@ -120,71 +185,6 @@
             }
         })
     }
-    // Banner.prototype.add = function () {
-    //     var _this = this;
-    //     $.post('/banner/add', {
-    //         bannerName: this.dom.nameInput.val(),
-    //         bannerUrl: this.dom.urlInput.val()
-    //     }, function (res) {
-    //         if (res.code == 0) {
-    //             layer.msg('添加成功');
-    //             // 请求一下数据
-    //             _this.search()
-    //         } else {
-    //             // console.log(res.msg);
-    //             layer.msg('网络异常，请稍后重试');
-    //         }
-    //         // 手动调用关闭的方法
-    //         _this.dom.addModal.modal('hide')
-    //         // 手动清空输入框的内容
-    //         _this.dom.nameInput.val('');
-    //         _this.dom.urlInput.val('');
-    //     });
-    // }
-
-    // 查询的方法search
-    Banner.prototype.search = function () {
-        var _this = this;
-        $.get('/banner/search', {
-            pageNum: this.pageNum,
-            pageSize: this.pageSize
-        }, function (res) {
-            if (res.code == 0) {
-                layer.msg('查询成功');
-
-                // 将res.data写入到实例的bannerList
-                _this.bannerList = res.data;
-                // 将res.totalPage写入到实例的totalPage
-                _this.totalPage = res.totalPage;
-
-                // 调用渲染table
-                _this.renderTable();
-
-                // 调用渲染分页
-                _this.renderPage();
-
-            } else {
-                console.log(res.msg);
-                layer.msg('网络异常，请稍后重试');
-            }
-        })
-
-    }
-
-    // 删除的方法
-    // Banner.prototype.delete=function(){
-    //     var _this = this;
-    //     $.post('/banner/delete',{
-    //         // id:
-    //     },function(res){
-    //         if(res.code === 0){
-    //             layer.msg('删除成功');
-
-    //         }else{
-    //             layer.msg('网络异常，请稍后重试'); 
-    //         }
-    //     })
-    // }
 
     // 渲染table
     Banner.prototype.renderTable = function () {
@@ -279,31 +279,22 @@
             _this.search();
         })
 
-        // 删除按钮
-        this.dom.table.on('click', '.delete', function () {
-            // 1.得到id
-            var id = $(this).data('id');
+       // 删除按钮
+       this.dom.table.on('click','.delete',function () {
+        // 1.得到id
+        var id = $(this).data('id');
 
-            // 2.二次确认框
-            layer.confirm('确认删除吗？', function () {
-                setTimeout(function(){
-                    _this.search();
-                },1000)
-                console.log('确认');
-                $.post('/banner/delete', {
-                    id: id
-                }, function (res) {
-                    if (res.code === 0) {
-                        layer.msg('删除成功');
-
-                    } else {
-                        layer.msg('网络异常，请稍后重试');
-                    }
-                })
-            }, function () {
-                console.log('取消');
-            })
+        layer.confirm("确认删除吗？",function () {
+             console.log('确认');
+             _this.delete(id);
+             setTimeout(function(){
+                 _this.search();
+             },1000)
+         
+        },function () {
+         console.log('取消');
         })
+    })
 
         //修改按钮
         this.dom.table.on('click', '.update', function () {

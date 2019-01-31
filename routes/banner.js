@@ -8,7 +8,7 @@ const fs = require('fs');
 
 const upload = multer({
     dest: 'F:/tmp'
-})
+}) 
 
 // 添加banenr  - http://localhost:3000/banner/add
 router.post('/add', upload.single('bannerImg'), (req, res) => {
