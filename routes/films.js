@@ -219,5 +219,29 @@ router.post('/update1',(req,res)=>{
         })
     })
 })
-
+router.post('/find', function (req, res) {
+    const id = req.body.id;
+    FilmsModel.findOne({
+        _id: id
+    }).then(function (data) {
+        if (data) {
+            res.json({
+                code: 0,
+                msg: 'ok',
+                data:data
+            })
+        } else {
+            res.json({
+                code: -1,
+                msg: '未找到相关记录'
+            })
+        }
+        console.log('data');
+    }).catch(function (error) {
+        res.json({
+            code: -1,
+            msg: error.message
+        })
+    })
+})
 module.exports = router;

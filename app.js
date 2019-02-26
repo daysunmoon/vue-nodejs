@@ -14,7 +14,12 @@ const userRouter = require('./routes/user');
 app.use(express.static(path.resolve(__dirname,'./public')));
 app.use(cookieParser());
 app.use(express.json());
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
+app.use(function(req,res,next){
+  res.set('Access-Control-Allow-Origin','*');
+  res.set('Access-Control-Allow-Headers','Content-Type');
+  next();
+})
 
 app.set('views','./views');
 app.set('view engine','ejs');
