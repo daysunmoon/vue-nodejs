@@ -6,9 +6,11 @@ body{
 }
 .layout-slide{
     flex-shrink: 0;
-    width:256px;
+    width:150px;
     height: 100%;
     background: #333333;
+    float: left;
+    /* margin-top: 60px; */
 }
 .layout-main{
     display: flex;
@@ -17,8 +19,9 @@ body{
     background:#ccc;
 }
 .layout-header{
-    background:rgb(58, 57, 57);
-    height: 88px;
+    background:#23262E;
+    height: 60px;
+    width: 100%;
 }
 
 .layout-header .layui-btn{
@@ -32,21 +35,21 @@ body{
     float: left;
     width: 800px;
     font-size: 20px;
-    line-height: 50px;
+    line-height: 60px;
     margin-left: 20px;
     color:#fff;
 }
 .layout-header .span a,.layout-header .span i{
-    height: 88px;
-    line-height: 88px;
+    height: 50px;
+    line-height: 50px;
     color:#fff;
 }
 .layout-slide a {
     display: block;
-    height: 90px;
-    line-height: 90px;
+    height: 50px;
+    line-height: 50px;
     border-bottom: 2px solid #fff;
     color: #fff;
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
   }

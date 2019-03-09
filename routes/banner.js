@@ -52,31 +52,6 @@ router.post('/add', upload.single('bannerImg'), (req, res) => {
 
 
 
-
-// router.post('/add',(req,res)=>{
-//     var banner = new BannerModel({
-//         name:req.body.bannerName,
-//         imgUrl:req.body.bannerUrl
-//     });
-
-//     banner
-//         .save()
-//         .then(()=>{
-//             res.json({
-//                 code:0,
-//                 msg:"ok"
-//             })
-//         })
-//         .catch((err)=>{
-//             res.json({
-//                 code:-1,
-//                 msg:err.message
-//             }) 
-//         })
-
-// })
-
-
 // 搜索or查询banner - http://localhost:3000/banner/search
 router.get('/search', (req, res) => {
     // 分页

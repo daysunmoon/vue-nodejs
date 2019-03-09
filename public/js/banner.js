@@ -63,27 +63,6 @@
         })
     }
 
-    // Banner.prototype.add = function () {
-    //     var _this = this;
-    //     $.post('/banner/add', {
-    //         bannerName: this.dom.nameInput.val(),
-    //         bannerUrl: this.dom.urlInput.val()
-    //     }, function (res) {
-    //         if (res.code == 0) {
-    //             layer.msg('添加成功');
-    //             // 请求一下数据
-    //             _this.search()
-    //         } else {
-    //             // console.log(res.msg);
-    //             layer.msg('网络异常，请稍后重试');
-    //         }
-    //         // 手动调用关闭的方法
-    //         _this.dom.addModal.modal('hide')
-    //         // 手动清空输入框的内容
-    //         _this.dom.nameInput.val('');
-    //         _this.dom.urlInput.val('');
-    //     });
-    // }
 
     // 查询的方法search
     Banner.prototype.search = function () {

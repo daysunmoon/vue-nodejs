@@ -34,4 +34,4 @@ app.use('/user',userRouter);
 
 
 
-app.listen(3000)
+app.listen(3001)

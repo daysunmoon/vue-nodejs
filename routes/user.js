@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
         .catch(err => {
             res.json({
                 code: -1,
-                msg: error.message
+                msg: err.message
             })
         })
 })
