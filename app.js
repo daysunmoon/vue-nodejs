@@ -7,6 +7,7 @@ const indexRouter = require('./routes/index');
 const bannerRouter = require('./routes/banner');
 const filmsRouter = require('./routes/films');
 const cinemaRouter = require('./routes/cinema');
+const orderRouter = require('./routes/order');
 const userRouter = require('./routes/user');
 
  
@@ -28,10 +29,11 @@ app.use('/',indexRouter);
 app.use('/banner',bannerRouter);
 app.use('/films',filmsRouter);  
 app.use('/cinema',cinemaRouter); 
+app.use('/order',orderRouter);
 app.use('/user',userRouter); 
 
  
 
 
 
-app.listen(3001)
+app.listen(3000)

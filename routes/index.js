@@ -46,6 +46,13 @@ router.get('/users.html',userCheck,(req,res)=>{
     });
 })
 
+//order 页面
+router.get('/order.html',userCheck,(req,res)=>{
+    res.render('order',{
+        nickName:req.cookies.nickName,
+        isAdmin:Number(req.cookies.isAdmin)
+    })
+})
 // 注册 页面
 router.get('/register.html', (req, res) => {
     res.render('register');

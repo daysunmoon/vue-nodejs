@@ -104,7 +104,7 @@ router.get('/search', function (req, res) {
                 })
         }
     ], function (err, result) {
-        console.log(result);
+        // console.log(result);
         if (err) {
             res.json({
                 code: -1,

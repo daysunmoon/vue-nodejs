@@ -1,58 +1,27 @@
 body{
-    background: #545454;
+    /* background: url(../images/loginBg.png) repeat; */
 }
 #register{
-    height: 540px;
-    width: 424px;
-    /* border: 12px solid #5b5b5b; */
-    margin: 60px auto;
-    border-radius: 14px;
-    background: #fffffd;
+    width: 500px;
+    height: 500px;
+    /* background:url('../images/loginBg.png') repeat; */
+    background: red;
+    margin: auto;
 }
 .header{
-    height: 64px;
-    width: 422px;
-    background: #f7f7f7;
-    border-bottom: 3px solid #d2d2d2;
-    border-radius:14px;
+    height: 50px;
 }
 .header h1{
-    color: #3d3d3d;
-    font-size:28px;
-    /* margin-left: 30px; */
+    color: #000;
+    font-size: 24px;
     text-align: center;
-    height: 64px;
-    line-height: 64px;
-    font-weight:bolder; 
+    line-height: 50px;
 }
-.main input{
-    width: 406px;
-    margin-left: 8px;
-    height: 54px;
-    border: 2px solid #d7d7d7;
-    margin-top: 30px;
-    font-size: 18px;
-    padding-left: 24px;
-    line-height: 56px;
-    border-radius: 8px;
+#register .main {
+    height: 300px;
 }
-#btn{
-    width: 130px;
+#register .main input{
     height: 50px;
-    margin-top: 26px;
-    background: #97e4ea;
-    border: 4px solid #8aced1;
-    color: #76babd;
-    border-radius: 4px;
-    font-size: 26px;
-    margin-left: 146px;
-}
-.none{
-  font-size: 16px;
-  /* color: #f8f8f8; */
-  margin-left:134px;
-  margin-top: 12px; 
-}
-.none a{
-    color: #a80b0b;
+    border: none;
+    widows: 100%;
 }

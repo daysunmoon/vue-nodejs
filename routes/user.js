@@ -42,52 +42,7 @@ router.post('/register1', (req, res) => {
         }
     })
 })
-// router.post('/register', (req, res) => {
-//     UserModel.find({
-//         userName: req.body.userName
-//     }).then((data) => {
-//         console.log(data);
-//         console.log(data.length);
-//         if (data.length != 0) {
-//             res.json({
-//                 code: -1, 
-//                 msg: '用户名已存在，请重新注册'
-//             })
-//             return;
-//         } else { 
-//             res.json({
-//                 code: 0,
-//                 msg: '可用',
-//                 data: {
-//                     userName: data.userName
-//                 } 
-//             })
-//             let user = new UserModel(req.body);
-//             //3、save方法
-//             user.save()
-//                 .then(() => {
-//                     res.json({
-//                         code: 0, 
-//                         msg: '注册成功'
-//                     })
-//                 }) 
-//                 .catch(err => {
-//                     res.json({
-//                         code: -1,
-//                         msg: err.message
-//                     })
-//                 })
 
-//         }
-
-//     }).catch(err => {
-//         console.log(err);
-//         res.json({
-//             code: -1,
-//             msg: err.msg
-//         })
-//     })
-// })
 
 // 登录 /user/login
 router.post('/login', (req, res) => {
